@@ -20,6 +20,3 @@ export const separateString = str => {
 
 export const API__KEY = 'ad3d2f61c87bca974e5834f0b4a680d8';
 export const transformData = data =>data && data.replace(/(\d+)-(\d+)-(\d+)/, '$3/$2/$1');
-export const transformTime = time =>{
-
-};

@@ -33,3 +33,11 @@ export const resetFilteredMoviesRequestAction = actionCreator(requestCreator(res
 export const getCurrentMovie = 'GET__CURRENT__MOVIE';
 export const getCurrentMovieRequestAction = actionCreator(requestCreator(getCurrentMovie));
 export const getCurrentMovieSuccessAction = actionCreator(successCreator(getCurrentMovie));
+
+export const getCurrentMovieTrailer = 'GET__CURRENT__MOVIE__TRAILER';
+export const getCurrentMovieTrailerRequestAction = actionCreator(requestCreator(getCurrentMovieTrailer));
+export const getCurrentMovieTrailerSuccessAction = actionCreator(successCreator(getCurrentMovieTrailer));
+
+export const getUpcomingMovies = 'GET__UPCOMING__MOVIES';
+export const getUpcomingMoviesRequestAction = actionCreator(requestCreator(getUpcomingMovies));
+export const getUpcomingMoviesSuccessAction = actionCreator(successCreator(getUpcomingMovies));

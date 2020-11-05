@@ -4,10 +4,13 @@ import {MoviesContainer} from "../movies";
 import {CollectionsPageContainer} from "../collectionsPage";
 import {SearchPageContainer} from "../searchPage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {HeaderComponent} from "../headerComponent";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createStackNavigator} from "@react-navigation/stack";
 import {MovieInfo} from "../movieInfo";
+import {Trailer} from "../trailer";
+import {Overview} from "../overview";
+import {CalendarComponent} from "../calendarComponent";
+import {DayInfo} from "../dayInfo";
 
 export const Page = (props) => {
     console.log(props)
@@ -23,16 +26,21 @@ export const Page = (props) => {
     const createCollectionStack = () => (
         <Stack.Navigator>
             <Stack.Screen name="Collections" component={CollectionsPageContainer}/>
-            <Stack.Screen name="Info" component={MovieInfo}/>
+            <Stack.Screen name="Info" component={Trailer}/>
         </Stack.Navigator>
     )
     const createSearchStack = () => (
         <Stack.Navigator>
             <Stack.Screen name="Search" component={SearchPageContainer}/>
-            <Stack.Screen name="Info" component={MovieInfo}/>
+            <Stack.Screen name="Info" component={Overview}/>
         </Stack.Navigator>
     )
-
+    const createCalendarStack = () => (
+        <Stack.Navigator>
+            <Stack.Screen name="Calendar" component={CalendarComponent}/>
+            <Stack.Screen name="DayInfo" component={DayInfo}/>
+        </Stack.Navigator>
+    )
     return (
         <View style={styles.container}>
                 {/*<HeaderComponent/>*/}
@@ -53,6 +61,14 @@ export const Page = (props) => {
                                       options={{
                                           tabBarIcon: ({ color, size }) => (
                                               <MaterialCommunityIcons name="folder" color={color} size={size} />
+                                          ),
+                                      }}
+                        />
+                        <Tab.Screen name="Calendar"
+                                    children = {createCalendarStack}
+                                      options={{
+                                          tabBarIcon: ({ color, size }) => (
+                                              <MaterialCommunityIcons name="calendar" color={color} size={size} />
                                           ),
                                       }}
                         />

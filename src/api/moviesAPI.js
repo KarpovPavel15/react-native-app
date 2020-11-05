@@ -38,3 +38,16 @@ export function fetchCurrentFilm (id){
         url: `https://api.themoviedb.org/3/movie/${id}?api_key=${API__KEY}&language=en-US`
     });
 }
+
+export function fetchCurrentTrailer(id){
+    return axios({
+        method: "get",
+        url: `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API__KEY}&language=en-US`
+    });
+}
+export function fetchCalendarDates(currentData,nextData){
+    return axios({
+        method: "get",
+        url: `https://api.themoviedb.org/3/discover/movie?api_key=${API__KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${currentData}&primary_release_date.lte=${nextData}`
+    });
+}

@@ -4,15 +4,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCurrentMovieRequestAction} from "../movies/actions";
 import {Image} from "react-native-elements";
 import {transformData} from "../../utils";
+import {Trailer} from "../trailer";
+import {Overview} from "../overview";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-export const MovieInfo = ({route}) => {
-    const {params} = route;
+export const MovieInfo = (props) => {
+    console.log(props)
+    const {params} = props.route;
     const idMovie = params.id;
     const dispatch = useDispatch();
     const {currentFilm} = useSelector(store=>store.rootMovies)
     let [loading,setLoading]= useState(true);
-
-    const {genres,backdrop_path,original_language,original_title,overview,popularity,poster_path,release_date,vote_average,runtime} = currentFilm;
+    const Tab = createMaterialTopTabNavigator();
+    const {genres,backdrop_path,original_title,poster_path,release_date,vote_average,runtime} = currentFilm;
 
     useEffect(()=>{
         dispatch(getCurrentMovieRequestAction({idMovie}))
@@ -42,12 +46,12 @@ export const MovieInfo = ({route}) => {
                         <Text style={{color:'white'}}>{runtime}</Text>
                     </View>
                 </ImageBackground>
-
-                <View>
-                    <Text>{original_language}</Text>
-                    <Text>{overview}</Text>
-                    <Text>{popularity}</Text>
-                </View>
+                    <View style={{flex:1}}>
+                        <Tab.Navigator lazy={true}>
+                            <Tab.Screen name="Trailer" component={Trailer}/>
+                            <Tab.Screen name="Overview" component={Overview} />
+                        </Tab.Navigator>
+                    </View>
             </View>}
         </View>
 
@@ -65,6 +69,6 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     filmPage: {
-        color: 'white'
+        color: 'white',flex:1
     }
 })
